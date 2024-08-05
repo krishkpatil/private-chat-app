@@ -49,7 +49,7 @@ def on_no_confirmation(user_message, response):
 
 def auto_refresh():
     time.sleep(5)
-    st.experimental_rerun()
+    st.rerun()
 
 def get_tasks():
     messages = {

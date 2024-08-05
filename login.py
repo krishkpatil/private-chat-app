@@ -21,4 +21,4 @@ def login():
     if st.button("Join the Chat"):
         st.session_state['logged_in'] = True
         st.session_state['username'] = username
-        st.experimental_rerun()
+        st.rerun()
