@@ -143,7 +143,7 @@ def chat():
             })
             message_all = pd.concat([messages_df, new_message], ignore_index=True)
             message_all.to_csv("data/messages.csv", index=False)
-            st.experimental_rerun()
+            st.rerun()
     
     # Add a section to provide feedback link after tasks
     st.write("Please provide your feedback using the link below.")
