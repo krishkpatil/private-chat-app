@@ -51,26 +51,6 @@ def auto_refresh():
     time.sleep(5)
     st.rerun()
 
-def get_tasks():
-    messages = {
-        "sensitive": [
-            "Earnings report for Q3 shows significant growth in revenue.",
-            "Interest rates are expected to rise next quarter."
-        ],
-        "confidential": [
-            "The acquisition of XYZ Corp. is in final negotiations.",
-            "Trade talks between countries have reached a critical point."
-        ],
-        "public": [
-            "The annual company picnic is scheduled for August.",
-            "New product launch event details are now available."
-        ]
-    }
-
-    task_list = [(category, msg) for category, msgs in messages.items() for msg in msgs]
-    random.shuffle(task_list)
-    return task_list
-
 def chat():
     if 'logged_in' not in st.session_state or not st.session_state['logged_in']:
         st.error("Please login first.")
