@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import time
 from nlp_model import check_for_confidential_info
-import random
 
 def display_chat_history(messages):
     for message_ in messages:
@@ -63,13 +62,11 @@ def chat():
 
     st.write("### Instructions")
     st.write("""
-    In this task, you will be given a list of messages to classify. 
-    The messages can be one of three types:
+    In this task, you will be interacting with a chat application that simulates real-world scenarios.
+    The messages you send can be classified into one of three types:
     1. **Public**: Information that is safe to share openly.
     2. **Sensitive**: Information that should be handled with care and only shared with authorized individuals.
     3. **Confidential**: Information that is highly sensitive and should not be shared without proper authorization.
-    
-    You can choose a sentence from the task list or create a similar one. Public messages will be sent directly, while other messages will receive feedback. After completing the tasks, please fill out the feedback form to share your thoughts and help us improve the nudges.
     
     **Data Privacy Reminder**: All your messages, decisions, and feedback will be stored securely and used only for evaluating the effectiveness of the chat nudges. Your data will not be shared with third parties.
     """)
@@ -78,17 +75,6 @@ def chat():
     messages_list = messages_df.to_dict('records')
     messages_list = assign_roles(messages_list)
     display_chat_history(messages_list)
-
-    # Initialize task list in session state if not already present
-    if 'task_list' not in st.session_state:
-        st.session_state['task_list'] = get_tasks()
-
-    task_list = st.session_state['task_list']
-
-    # Display the task list
-    st.write("### Task List")
-    for idx, (category, task) in enumerate(task_list, 1):
-        st.write(f"{idx}. ({category.capitalize()}) {task}")
 
     user_message = st.chat_input("Enter your message:")
 
